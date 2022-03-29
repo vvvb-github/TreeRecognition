@@ -1,0 +1,14 @@
+{
+    "train": {
+        "optimizer": "Adam",
+        "learning_rate": 0.01,
+        "epoch": 100,
+        "devices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "checkpoint_path": "/home/data10/gaoshengyi/TreeRecognition/TreeSegmentation/checkpoints"
+    }
+}

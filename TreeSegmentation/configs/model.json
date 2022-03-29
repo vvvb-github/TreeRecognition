@@ -1,0 +1,70 @@
+{
+    "model": "HRNet",
+    "HRNet": {
+        "stem_channel": 64,
+        "out_channel": 1,
+        "final_conv_size": 1,
+        "stages": [
+            {
+                "num_module": 1,
+                "num_branch": 1,
+                "num_blocks": [
+                    1
+                ],
+                "channels": [
+                    32
+                ],
+                "block": "BOTTLENECK",
+                "fuse_method": "SUM"
+            },
+            {
+                "num_module": 1,
+                "num_branch": 2,
+                "num_blocks": [
+                    2,
+                    2
+                ],
+                "channels": [
+                    16,
+                    32
+                ],
+                "block": "BASIC",
+                "fuse_method": "SUM"
+            },
+            {
+                "num_module": 1,
+                "num_branch": 3,
+                "num_blocks": [
+                    2,
+                    2,
+                    2
+                ],
+                "channels": [
+                    16,
+                    32,
+                    64
+                ],
+                "block": "BASIC",
+                "fuse_method": "SUM"
+            },
+            {
+                "num_module": 1,
+                "num_branch": 4,
+                "num_blocks": [
+                    2,
+                    2,
+                    2,
+                    2
+                ],
+                "channels": [
+                    16,
+                    32,
+                    64,
+                    128
+                ],
+                "block": "BASIC",
+                "fuse_method": "SUM"
+            }
+        ]
+    }
+}

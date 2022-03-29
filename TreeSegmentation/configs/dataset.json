@@ -1,0 +1,26 @@
+{
+    "data_path": "/home/data10/gaoshengyi/dataset",
+    "train": {
+        "type": "train",
+        "batch_size": 16,
+        "short_size": 2560,
+        "img_size": 1536,
+        "scales": [
+            0.7,
+            1.3
+        ],
+        "aspects": [
+            0.9,
+            1.1
+        ],
+        "repeat_times": 5
+    },
+    "valid": {
+        "type": "valid",
+        "short_size": 2560
+    },
+    "synth": {
+        "type": "synth",
+        "short_size": 2560
+    }
+}
