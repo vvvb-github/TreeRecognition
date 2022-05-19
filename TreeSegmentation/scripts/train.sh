@@ -12,6 +12,7 @@ output_path=/home/data10/gaoshengyi/TreeRecognition/Output
 time=$(date "+%Y%m%d%H%M%S")
 
 python ${root_dir}/train.py ${data_config} ${model_config} ${process_config} ${output_path} \
+    HRNetV2 \
     --work_num=10 \
     --use_gpu \
     --amp \

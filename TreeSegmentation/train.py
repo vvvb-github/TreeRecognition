@@ -145,7 +145,7 @@ def save_checkpoint(epoch, model, checkpoint_path):
         save_model(model, save_path)
 
 
-def main(data_cfg, model_cfg, train_cfg, work_num, use_gpu):
+def main(model, data_cfg, model_cfg, train_cfg, work_num, use_gpu):
     if use_gpu:
         if not torch.cuda.is_available():
             log_error('Cuda is not available! Try to use cpu.')
@@ -153,7 +153,6 @@ def main(data_cfg, model_cfg, train_cfg, work_num, use_gpu):
     log_warn('Using {} for train.\n'.format('GPU' if use_gpu else 'CPU'))
 
     # load model
-    model = model_cfg['model']
     model = FullModel(model_cfg[model])
     if args.checkpoint != '':
         save_path = os.path.join(train_cfg['checkpoint_path'], args.checkpoint)
@@ -218,6 +217,7 @@ if __name__ == '__main__':
     parser.add_argument('model_config', help='config file')
     parser.add_argument('process_config', help='config file')
     parser.add_argument('output_path', help='output pictures path')
+    parser.add_argument('model', help='model')
     parser.add_argument('--work_num', type=int, default=1)
     parser.add_argument('--use_gpu', action='store_true', help='if use gpu')
     parser.add_argument('--amp', action='store_true', help='if use amp')
@@ -228,4 +228,4 @@ if __name__ == '__main__':
     model_cfg = json.load(open(args.model_config, 'r'))
     train_cfg = json.load(open(args.process_config, 'r'))['train']
     torch.backends.cudnn.benchmark = True
-    main(data_cfg, model_cfg, train_cfg, args.work_num, args.use_gpu)
+    main(args.model, data_cfg, model_cfg, train_cfg, args.work_num, args.use_gpu)

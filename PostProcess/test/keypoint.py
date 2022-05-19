@@ -24,7 +24,7 @@ def draw_point(img, position, color, r=1):
             img[i, j] = color
 
 
-def main(img_path, output_path, radius):
+def main(img_path, output_path, n, radius):
     mmcv.mkdir_or_exist(output_path)
 
     for img_name in mmcv.scandir(img_path):
@@ -33,7 +33,7 @@ def main(img_path, output_path, radius):
         img = binary_image(img, 255, 1)
         log_success('Load image {} success!'.format(path))
 
-        root, branches, leafs = detect_keypoints(img)
+        root, branches, leafs = detect_keypoints(img, n)
         log_info('Detect root {}.'.format(root))
         log_info('Detect {} branch points.'.format(len(branches)))
         log_info('Detect {} leaf points.'.format(len(leafs)))
@@ -55,7 +55,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='params')
     parser.add_argument('img_path', help='image path')
     parser.add_argument('output_path', help='output path')
+    parser.add_argument('--branch_n',type=int,default=9)
     parser.add_argument('--radius', type=int, default=1)
     args = parser.parse_args()
 
-    main(args.img_path, args.output_path, args.radius)
+    main(args.img_path, args.output_path, args.branch_n, args.radius)

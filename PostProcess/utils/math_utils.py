@@ -1,11 +1,15 @@
 def convolution(img, position, kernel):
     (x, y) = position
-    kernel_size = kernel.shape[0]//2
+    n = kernel.shape[0]
+    half = n//2
     res = 0
 
-    for i in range(3):
-        for j in range(3):
-            res += kernel[i, j]*img[x-kernel_size+i, y-kernel_size+j]
+    for i in range(n):
+        res += kernel[0, i]*img[x-half, y-half+i] + \
+            kernel[n-1, i]*img[x+half, y-half+i]
+    for i in range(n-2):
+        res += kernel[i+1, 0]*img[x-half+i+1, y-half] + \
+            kernel[i+1, n-1]*img[x-half+i+1, y+half]
 
     return res
 

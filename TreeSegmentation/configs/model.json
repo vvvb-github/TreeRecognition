@@ -1,6 +1,5 @@
 {
-    "model": "HRNet",
-    "HRNet": {
+    "HRNetV2": {
         "stem_channel": 64,
         "out_channel": 1,
         "final_conv_size": 1,
